@@ -27,14 +27,19 @@ Going further,we explored the data to check if there are trends between the expl
 #### Step 2: Feature encoding
 Before plotting visualizations, the categorical features have to be converted to numerical features. Further examination showed that the categorical features have pretty much labels, therefore using one hot encoding will likely lead to high dimensionality. Therefore, Scikit-learn’s label encoder was used to encode the features. We did not use pandas as looking at the dataset, it contains multiple cities and area localities which would create numerous columns and cause unnecessary hassle when looking at the updated dataframe.
 #### Step3: Exploring the different attributes using visualizations
+
 **HISTOGRAMS**
-We plotted a histogram for the attributes in the dataset to see their distributions. From this we could see some of the attributes were skewed, for example the number of price per sqft, Average rent and size of the house were right-skewed. 
+We plotted a histogram for the attributes in the dataset to see their distributions. From this we could see some of the attributes were skewed, for example the number of price per sqft, Average rent and size of the house were right-skewed.
+
 **SCATTER PLOTS**
 Next we made some scatter plots to better understand the trends and relationships of some variables against the target variable. We noticed some extreme values for the target variable but decided not to remove it as it is possible to have extremely high house rent based on various factors.
+
 **BAR GRAPH**
 We plotted a bar graph to further understand the count of each type of BHK available in the dataset. We observed 2 BHK were the most common followed by 1 and 3 BHK. 6 BHK houses were the least common.
+
 **BOX PLOT**
 Next we moved on to plot a box plot for the Rent against Area Type to gain further insights. We noticed that area type 1 is the most common.
+
 **HEATMAP**
 Lastly we plotted a heatmap to show the correlation of all the features in the dataset. From the correlation we can see that some features like bathroom, size and BHK have a positive relation and other features like Area type and point of contact have a negative correlation. Turns out that Bathroom has the strongest positive correlation and point of contact has the strongest negative correlation out of all the features. Also, Area locality has a close to 0 correlation with the target variable so we may consider dropping it before the modeling process.
 
