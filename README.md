@@ -12,36 +12,12 @@ The primary objective of this analysis is to build a predictive model for house 
 For this project, we used a dataset from kaggle that includes information about various types of houses in different ocations and their corresponding rental prices. It consists of data of about 4700+ houses available for rent with different parameters ranging from; size to the number of bedrooms, to the locality, and furnishing status, among others. The data was
 collected from multiple sources, including real estate listings and property management databases.
 
-To prepare the data for modeling, we performed several preprocessing steps. This involved cleaning the dataset, handling missing values, and addressing outliers. 
-#### Step 1:
-Import dataset
-#### Step 2: check for null, missing and duplicate values
-After appropriate checking, we discovered that the dataset is void of null, missing and duplicate values. This depicts that the dataset is kind of clean from the onset.
-#### Step 3: Feature engineering
-Additionally, we conducted feature engineering by creating new variables such as price per square foot, age of the property from the day it was posted and bathroom to bedroom ratio, which we believed could be valuable in predicting house rents.
+To prepare the data for modeling, we performed several preprocessing steps. This involved cleaning the dataset, handling missing values, and addressing outliers. After appropriate checking, we discovered that the dataset is void of null, missing and duplicate values. This depicts that the dataset is kind of clean from the onset. Additionally, we conducted feature engineering by creating new variables such as price per square foot, age of the property from the day it was posted and bathroom to bedroom ratio, which we believed could be valuable in predicting house rents.
 
 ## Data exploration and visualization
 Going further,we explored the data to check if there are trends between the explanatory variables and the target variable and to gain insights into the dataset. The summary statistics revealed the distributions and ranges of various features.
 
-#### Step 1: Basic Stats of the target variable
-#### Step 2: Feature encoding
-Before plotting visualizations, the categorical features have to be converted to numerical features. Further examination showed that the categorical features have pretty much labels, therefore using one hot encoding will likely lead to high dimensionality. Therefore, Scikit-learn’s label encoder was used to encode the features. We did not use pandas as looking at the dataset, it contains multiple cities and area localities which would create numerous columns and cause unnecessary hassle when looking at the updated dataframe.
-#### Step3: Exploring the different attributes using visualizations
-
-**HISTOGRAMS**
-We plotted a histogram for the attributes in the dataset to see their distributions. From this we could see some of the attributes were skewed, for example the number of price per sqft, Average rent and size of the house were right-skewed.
-
-**SCATTER PLOTS**
-Next we made some scatter plots to better understand the trends and relationships of some variables against the target variable. We noticed some extreme values for the target variable but decided not to remove it as it is possible to have extremely high house rent based on various factors.
-
-**BAR GRAPH**
-We plotted a bar graph to further understand the count of each type of BHK available in the dataset. We observed 2 BHK were the most common followed by 1 and 3 BHK. 6 BHK houses were the least common.
-
-**BOX PLOT**
-Next we moved on to plot a box plot for the Rent against Area Type to gain further insights. We noticed that area type 1 is the most common.
-
-**HEATMAP**
-Lastly we plotted a heatmap to show the correlation of all the features in the dataset. From the correlation we can see that some features like bathroom, size and BHK have a positive relation and other features like Area type and point of contact have a negative correlation. Turns out that Bathroom has the strongest positive correlation and point of contact has the strongest negative correlation out of all the features. Also, Area locality has a close to 0 correlation with the target variable so we may consider dropping it before the modeling process.
+Before plotting visualizations, the categorical features have to be converted to numerical features. Further examination showed that the categorical features have pretty much labels, therefore using one hot encoding will likely lead to high dimensionality. Therefore, Scikit-learn’s label encoder was used to encode the features. We did not use pandas as looking at the dataset, it contains multiple cities and area localities which would create numerous columns and cause unnecessary hassle when looking at the updated dataframe. We plotted a histogram for the attributes in the dataset to see their distributions. From this we could see some of the attributes were skewed, for example the number of price per sqft, Average rent and size of the house were right-skewed. Next we made some scatter plots to better understand the trends and relationships of some variables against the target variable. We noticed some extreme values for the target variable but decided not to remove it as it is possible to have extremely high house rent based on various factors. We plotted a bar graph to further understand the count of each type of BHK available in the dataset. We observed 2 BHK were the most common followed by 1 and 3 BHK. 6 BHK houses were the least common. Next we moved on to plot a box plot for the Rent against Area Type to gain further insights. We noticed that area type 1 is the most common. Lastly we plotted a heatmap to show the correlation of all the features in the dataset. From the correlation we can see that some features like bathroom, size and BHK have a positive relation and other features like Area type and point of contact have a negative correlation. Turns out that Bathroom has the strongest positive correlation and point of contact has the strongest negative correlation out of all the features. Also, Area locality has a close to 0 correlation with the target variable so we may consider dropping it before the modeling process.
 
 Through all these visualizations, we identified patterns and potential outliers. For example, we observed that houses with more bedrooms tended to have higher rental prices, and certain locations exhibited higher rent prices compared to others. These findings provided a foundation for feature selection and model development.
 
@@ -51,18 +27,6 @@ For this project, we tried out three models, Linear Regression, Random Forest an
 ## Modeling implementation
 #### Step 1: Split data into explanatory variables
 Before we move on with modeling, we first need to split the data. We decided to drop the ‘Posted On’ column along with the target variable as looking at the problem at hand, this attribute would not contribute much to the model. The dataset is split into explanatory variables — X and target variable — y.
-#### Step 2: Divide data into Train and Test set
-To implement the model, we divided the dataset into training and testing sets using a 70:30 split. The training set was used to train the models, while the testing set was used to evaluate their performance. Scikit-learn’s train-test split is used to accomplish this task.
-#### Step 3: Feature scaling
-Before going into modeling proper, the data needs to be scaled to handle skewed features. Scikit-learn’s standard scaler ensures that for each feature the mean is 0 and the variance is 1, bringing all the features to the same magnitude. Doing this will significantly affect the model’s performance.
-#### Step 4: Feature Preprocessing
-House rent prediction is a regression problem, therefore about three regression models were trained and the best was chosen.
-We defined two functions to help calculate the model metrics — R2 score and root mean squared error.
-#### Step 5: Implementing Linear Regression model
-#### Step 6: Implementing Decision Tree model
-#### Step 7: Implementing Decision Tree model
-#### Step 8: Hyperparameter tuning with Grid search (Optional)
-Lastly, we then perform grid search with cross-validation using the GridSearchCV function. After fitting the grid search object to the training data, we can obtain the best hyperparameter values (best_params) and the corresponding best model (best_model) based on the evaluation metric.
 
 ## Evaluation
 To evaluate each of the model's performance, we used metrics, including root mean squared error (RMSE) and R-squared. The RMSE measures the average squared difference between the predicted and actual rental prices, while the R-squared value represents the proportion of the variance in the rental prices that can be explained by our model. Upon evaluating the model on the testing set, we obtained an MSE of 0.9997 and an R-squared value of 0.0153. These results indicate that Linear Regression Model is the best fit out of the three. Our model has a reasonably good fit to the data and is capable of making
